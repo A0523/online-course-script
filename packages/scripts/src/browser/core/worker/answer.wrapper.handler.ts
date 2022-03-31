@@ -23,41 +23,8 @@ export interface Answer {
 /**
  * 题库配置器
  */
-export interface AnswererWrapper {
-    /** 答题器请求路径 */
-    url: string;
-    /** 题库名字 */
-    name: string;
-    /** 题库网址 */
-    homepage?: string;
-    data?: Record<string, string>;
-    method: "post" | "get";
-    /** 定义 handler 中的参数类型 */
-    contentType: "json" | "text";
-    /**
-     * 此选项是个字符串， 使用 [Function(string)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function) 构造方法进行解析生成方法
-     *
-     * 方法传入一个参数 : 请求获取到的文本 ，可以使用 contentType 定义文本类型
-     *
-     * 对返回的数据进行自定义解析
-     *
-     * 并且返回一个数组 : `[题目, 答案]`
-     *
-     * 或者二维数据 : `[[题目1, 答案1],[题目2, 答案2], ...`
-     *
-     * 如果搜不到则返回 undefined
-     *
-     * @example
-     *
-     * ```js
-     * {
-     *      handler: `return (res)=> res.code === 0 ? undefined : [res.question, undefined]`
-     * }
-     * ```
-     *
-     */
-    handler: string;
-}
+export interface AnswererWrapper 
+   [{"name":"enncy题库","homepage":"https://tk.enncy.cn/","url":"https://tk.enncy.cn/query","method":"get","data":{"token":"1fd9c5e867d31812b65545fcb8a67249","title":"${title}"},"contentType":"json","handler":"return (res)=>res.code === 0 ? undefined : [res.data.question,res.data.answer]"}]
 
 /**
  *
